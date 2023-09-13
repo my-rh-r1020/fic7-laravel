@@ -18,8 +18,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     public function update(User $user, array $input): void
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-
+            'name' => 'required|string|min:3|max:255',
             'email' => [
                 'required',
                 'string',
@@ -27,15 +26,21 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'max:255',
                 Rule::unique('users')->ignore($user->id),
             ],
+            'phoneNumber' => 'required|min:10|max:12',
+            'bio' => 'string|min:5'
         ])->validateWithBag('updateProfileInformation');
 
-        if ($input['email'] !== $user->email &&
-            $user instanceof MustVerifyEmail) {
+        if (
+            $input['email'] !== $user->email &&
+            $user instanceof MustVerifyEmail
+        ) {
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'phoneNumber' => $input['phoneNumber'],
+                'bio' => $input['bio']
             ])->save();
         }
     }

@@ -3,16 +3,15 @@
 @section('title', 'Dashboard')
 
 @push('style')
-    <!-- CSS Libraries -->
+<!-- CSS Libraries -->
 @endpush
 
 @section('main')
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>FIC Batch 7 2023</h1>
+            <h1>Flutter x Laravel Batch 7 - 2023</h1>
         </div>
-
         <div class="section-body">
         </div>
     </section>
@@ -20,7 +19,7 @@
 @endsection
 
 @push('scripts')
-    <!-- JS Libraies -->
+<!-- JS Libraies -->
 
-    <!-- Page Specific JS File -->
+<!-- Page Specific JS File -->
 @endpush

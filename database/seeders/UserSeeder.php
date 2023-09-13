@@ -21,14 +21,16 @@ class UserSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         User::create([
-            'name' => 'Coba User 1',
-            'email' => 'cobauser1@gmail.com',
-            'password' => bcrypt('usercoba-1')
+            'name' => 'Super Admin 1',
+            'email' => 'superadm1@gmail.com',
+            'role' => 'superadmin',
+            'password' => bcrypt('super-adm01')
         ]);
         User::create([
-            'name' => 'Coba User 2',
-            'email' => 'cobauser2@gmail.com',
-            'password' => bcrypt('user-coba2')
+            'name' => 'Admin 1',
+            'email' => 'admin1@gmail.com',
+            'role' => 'admin',
+            'password' => bcrypt('admin-coba1')
         ]);
     }
 }
