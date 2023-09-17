@@ -15,9 +15,9 @@
             <li class="nav-item dropdown {{ $type_menu === 'user' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Manajemen User</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ Request::is('dashboard/role') ? 'active' : '' }}">
+                    {{-- <li class="{{ Request::is('dashboard/role') ? 'active' : '' }}">
                         <a href="{{ url('dashboard/role') }}">Role</a>
-                    </li>
+                    </li> --}}
                     <li class="{{ Request::is('dashboard/user') ? 'active' : '' }}">
                         <a href="{{ route('dashboard.userdata') }}">User</a>
                     </li>

@@ -54,7 +54,7 @@
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phoneNumber }}</td>
-                                            <td><div class="badge {{ $user->email_verified_at ? 'badge-primary':'badge-warning' }}">{{ $user->email_verified_at ? 'Verified':'Not Verified' }}</div></td>
+                                            <td><div class="badge {{ $user->email_verified_at ? 'badge-primary':'badge-warning' }}">{{ $user->email_verified_at ? 'Verified':'Need Verify' }}</div></td>
                                         </tr>
                                         @else
                                         <tr>
