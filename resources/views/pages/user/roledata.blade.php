@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'User Data')
+@section('title', 'Role Data')
 
 @push('style')
 <!-- CSS Libraries -->
@@ -12,10 +12,10 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>User Data</h1>
+            <h1>Roles Data</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                <div class="breadcrumb-item">User Data</div>
+                <div class="breadcrumb-item">Roles Data</div>
             </div>
         </div>
         <div class="section-body">
@@ -23,7 +23,7 @@
                 <div class="col-12 col-md-12 col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Users</h4>
+                            <h4>All Roles</h4>
                         </div>
                         <div class="card-body">
                             <div class="float-right">
@@ -41,28 +41,19 @@
                                 <table class="table-hover table">
                                     <thead>
                                         <th scope="col">#</th>
-                                        <th scope="col">Full Name</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Role Account</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">Role Name</th>
                                     </thead>
                                     <tbody>
-                                        @foreach($users as $user)
-                                        @if($user)
+                                        @foreach($roles as $role)
+                                        @if($role)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->email }}</td>
-                                            <td>{{ $user->role->name }}</td>
-                                            <td><div class="badge {{ $user->email_verified_at ? 'badge-primary':'badge-warning' }}">{{ $user->email_verified_at ? 'Verified':'Need Verify' }}</div></td>
+                                            <td>{{ $role->name }}</td>
                                         </tr>
                                         @else
                                         <tr>
                                             <td></td>
-                                            <td></td>
                                             <td>No Data</td>
-                                            <td></td>
-                                            <td></td>
                                         </tr>
                                         @endif
                                         @endforeach
@@ -71,31 +62,8 @@
                             </div>
                             <div class="float-right">
                                 <nav>
-                                    {{-- <ul class="pagination">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active">
-                                            <a class="page-link" href="#">1</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">3</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </li>
-                                    </ul> --}}
                                     <ul class="pagination">
-                                        {{ $users->links() }}
+                                        {{ $roles->links() }}
                                     </ul>
                                 </nav>
                             </div>

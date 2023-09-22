@@ -2,32 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $users = User::when(
+        $categories = Category::when(
             $request->input('search'),
             fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%')
-                ->orWhere('email', 'like', '%' . $search . '%')
         )->paginate(10)->withQueryString();
 
-        // Search v2
-        // $users = DB::table('users')
-        //     ->when(
-        //         $request->input('search'),
-        //         fn ($query, $search) => $query->where('name', 'like', '%' . $search . '%')
-        //             ->orWhere('email', 'like', '%' . $search . '%')
-        //             ->orWhere('phoneNumber', 'like', '%' . $search . '%')
-        //     )->paginate(10);
-
-        return view('pages.user.userdata', compact('users'), ['type_menu' => 'user']);
+        return view('pages.user.categorydata', compact('categories'), ['type_menu' => 'category']);
     }
 
     /**
@@ -49,7 +39,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(Category $category)
     {
         //
     }
@@ -57,7 +47,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit(Category $category)
     {
         //
     }
@@ -65,7 +55,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Category $category)
     {
         //
     }
@@ -73,7 +63,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(Category $category)
     {
         //
     }

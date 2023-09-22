@@ -12,12 +12,32 @@
                 <a class="nav-link" href="{{ route('dashboard') }}"><i class="fas fa-fire"></i> <span>Dashboard</span></a>
             </li>
             <li class="menu-header">Data</li>
-            <li class="nav-item dropdown {{ $type_menu === 'user' ? 'active' : '' }}">
+            <li class="{{ Request::is('dashboard/category') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('dashboard.categorydata') }}"><i class="fas fa-th-large"></i> <span>Category</span></a>
+            </li>
+            <li class="{{ Request::is('dashboard/product') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('dashboard.productdata') }}"><i class="fas fa-solid fa-box"></i> <span>Product</span></a>
+            </li>
+            <li class="nav-item dropdown {{ $type_menu === 'order' || $type_menu === 'order-item' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fa-solid fa-chart-line"></i> <span>Transactions</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('dashboard/order') ? 'active' : '' }}">
+                        <a href="{{ route('dashboard.orderdata') }}"><span>Order</span></a>
+                    </li>
+                    <li class="{{ Request::is('dashboard/item') ? 'active' : '' }}">
+                        <a href="{{ route('dashboard.orderitemdata') }}">Items</a>
+                    </li>
+                </ul>
+            </li>
+            {{-- <li class="{{ Request::is('dashboard/order') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('dashboard.orderdata') }}"><i class="fas fa-solid fa-box"></i> <span>Order</span></a>
+            </li> --}}
+            <li class="nav-item dropdown {{ $type_menu === 'user' || $type_menu === 'role' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Manajemen User</span></a>
                 <ul class="dropdown-menu">
-                    {{-- <li class="{{ Request::is('dashboard/role') ? 'active' : '' }}">
-                        <a href="{{ url('dashboard/role') }}">Role</a>
-                    </li> --}}
+                    <li class="{{ Request::is('dashboard/role') ? 'active' : '' }}">
+                        <a href="{{ route('dashboard.roledata') }}">Role</a>
+                    </li>
                     <li class="{{ Request::is('dashboard/user') ? 'active' : '' }}">
                         <a href="{{ route('dashboard.userdata') }}">User</a>
                     </li>

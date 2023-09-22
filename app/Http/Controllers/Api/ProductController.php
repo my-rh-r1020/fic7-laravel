@@ -29,14 +29,15 @@ class ProductController extends Controller
             'category_id' => 'required',
             'name' => 'required|string|min:3|max:100',
             'description' => 'required|string|min:5',
+            'stock' => 'required|integer',
             'price' => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
-            'image_url' => 'required|image|mimes:jpeg,png,jpg|max:1024'
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:1024'
         ]);
 
-        if ($imageurl = $request->file('image_url')) {
-            $imageName = date('YmdHis') . "." . $imageurl->getClientOriginalExtension();
-            $imageurl->storeAs('product-img', $imageName);
-            $data['image_url'] = $imageName;
+        if ($producImg = $request->file('image')) {
+            $imageName = date('YmdHis') . "." . $producImg->getClientOriginalExtension();
+            $producImg->storeAs('product-img', $imageName);
+            $data['image'] = $imageName;
         }
 
         $data['user_id'] = 1;
@@ -63,16 +64,17 @@ class ProductController extends Controller
             'category_id' => 'required',
             'name' => 'required|string|min:3|max:100',
             'description' => 'required|string|min:5',
+            'stock' => 'required|integer',
             'price' => 'required|regex:/^[0-9]+(\.[0-9][0-9]?)?$/',
-            'image_url' => 'required|image|mimes:jpeg,png,jpg|max:1024'
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:1024'
         ]);
 
-        if ($imageurl = $request->file('image_url')) {
-            $imageName = date('YmdHis') . "." . $imageurl->getClientOriginalExtension();
-            $imageurl->storeAs('product-img', $imageName);
-            $data['image_url'] = $imageName;
+        if ($producImg = $request->file('image')) {
+            $imageName = date('YmdHis') . "." . $producImg->getClientOriginalExtension();
+            $producImg->storeAs('product-img', $imageName);
+            $data['image'] = $imageName;
         } else {
-            unset($data['image_url']);
+            unset($data['image']);
         }
 
         $data['user_id'] = 1;
@@ -85,8 +87,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        if ($product->image_url) {
-            Storage::delete('product-img', $product->image_url);
+        if ($product->image) {
+            Storage::delete('product-img', $product->image);
             $product->delete();
         }
 

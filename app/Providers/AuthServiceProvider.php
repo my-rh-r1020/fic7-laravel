@@ -25,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
         foreach (self::$permission as $feature => $roles) {
             Gate::define($feature, function (User $user) use ($roles) {
                 // Permission checks
-                if (in_array($user->role, $roles)) {
+                if (in_array($user->role_id, $roles)) {
                     return true;
                 }
             });
@@ -35,8 +35,16 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Register any permissions
      */
+    // public static $permission = [
+    //     'dashboard' => ["Super Admin", "Admin", "User (Student)"],
+    //     'user' => ["Super Admin", "Admin"],
+    //     'category' => ["Super Admin", "Admin"],
+    //     'product' => ["Super Admin", "Admin"]
+    // ];
     public static $permission = [
-        'dashboard' => ['superadmin', 'admin', 'user'],
-        'user-data' => ['superadmin', 'admin']
+        'dashboard' => [1, 2, 3],
+        'user' => [1, 2],
+        'category' => [1, 2],
+        'product' => [1, 2]
     ];
 }
